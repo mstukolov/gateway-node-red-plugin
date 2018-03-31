@@ -1,7 +1,7 @@
 {
   "name": "gateway-node-red-plugin",
   "version": "1.0.0",
-  "description": "",
+  "description": "ble gateway for node-red",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
