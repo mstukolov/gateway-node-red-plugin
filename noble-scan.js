@@ -1,10 +1,11 @@
 var noble = require('noble');
 
-noble.startScanning(); // any service UUID, no duplicates
-
-
-noble.startScanning([], true); // any service UUID, allow duplicates
-
+noble.on('stateChange', function(state) {
+    if (state === 'poweredOn')
+        noble.startScanning();
+    else
+        noble.stopScanning();
+});
 
 /*
 var serviceUUIDs = ["<service UUID 1>", ...]; // default: [] => all
