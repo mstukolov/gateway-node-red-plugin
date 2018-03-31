@@ -1,14 +1,14 @@
-var noble = require('noble');
+const BeaconScanner = require('node-beacon-scanner');
+const scanner = new BeaconScanner();
 
-noble.on('stateChange', function(state) {
-    if (state === 'poweredOn')
-        noble.startScanning();
-    else
-        noble.stopScanning();
+// Set an Event handler for becons
+scanner.onadvertisement = (ad) => {
+    console.log(JSON.stringify(ad, null, '  '));
+};
+
+// Start scanning
+scanner.startScan().then(() => {
+    console.log('Started to scan.')  ;
+}).catch((error) => {
+    console.error(error);
 });
-
-/*
-var serviceUUIDs = ["<service UUID 1>", ...]; // default: [] => all
-var allowDuplicates = <false|true>; // default: false
-
-noble.startScanning(serviceUUIDs, allowDuplicates[, callback(error)]);*/
